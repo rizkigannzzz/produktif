@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemilihan Mata Pelajaran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+        }
+        .output {
+            margin-bottom: 15px;
+        }
+        .label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="output">
+            <span class="label">Nama:</span> 
+            <input type="text" id="namaInput" placeholder="Masukkan nama" oninput="updateOutput()">
+        </div>
+        <div class="output">
+            <span class="label">Kelas:</span> 
+            <input type="text" id="kelasInput" placeholder="Masukkan kelas" oninput="updateOutput()">
+        </div>
+        <div class="output">
+            <span class="label">Absen:</span> 
+            <input type="number" id="absenInput" placeholder="Masukkan nomor absen" oninput="updateOutput()">
+        </div>
+        <div class="output">
+            <span class="label">Pilih Mata Pelajaran:</span>
+            <select id="mataPelajaranSelect" multiple onchange="updateOutput()">
+                <option value="Matematika">Matematika</option>
+                <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                <option value="Fisika">Fisika</option>
+                <option value="Kimia">Kimia</option>
+                <option value="Biologi">Biologi</option>
+            </select>
+        </div>
+        <div class="output">
+            <span class="label">Nama:</span> <span id="namaOutput"></span>
+        </div>
+        <div class="output">
+            <span class="label">Kelas:</span> <span id="kelasOutput"></span>
+        </div>
+        <div class="output">
+            <span class="label">Absen:</span> <span id="absenOutput"></span>
+        </div>
+        <div class="output">
+            <span class="label">Mata Pelajaran yang Dipilih:</span>
+            <ul id="mataPelajaranTerpilih"></ul>
+        </div>
+    </div>
+
+    <script>
+        function updateOutput() {
+            // Update Nama
+            const nama = document.getElementById('namaInput').value;
+            document.getElementById('namaOutput').textContent = nama;
+
+            // Update Kelas
+            const kelas = document.getElementById('kelasInput').value;
+            document.getElementById('kelasOutput').textContent = kelas;
+
+            // Update Absen
+            const absen = document.getElementById('absenInput').value;
+            document.getElementById('absenOutput').textContent = absen;
+
+            // Update Mata Pelajaran
+            const selectedOptions = Array.from(document.getElementById('mataPelajaranSelect').selectedOptions);
+            const mataPelajaranTerpilih = document.getElementById('mataPelajaranTerpilih');
+            mataPelajaranTerpilih.innerHTML = '';
+
+            selectedOptions.forEach(option => {
+                const li = document.createElement('li');
+                li.textContent = option.value;
+                mataPelajaranTerpilih.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
